@@ -1,0 +1,55 @@
+import json
+
+# Sample questions
+questions = [
+    {
+        "question": "What is the capital of France?",
+        "options": ["A. Berlin", "B. Paris", "C. Rome", "D. Madrid"],
+        "answer": "B"
+    },
+    {
+        "question": "Who wrote 'Hamlet'?",
+        "options": ["A. Charles Dickens", "B. Jane Austen", "C. William Shakespeare", "D. Mark Twain"],
+        "answer": "C"
+    },
+    {
+        "question": "What is the smallest planet in our solar system?",
+        "options": ["A. Earth", "B. Venus", "C. Mars", "D. Mercury"],
+        "answer": "D"
+    }
+]
+
+def load_questions():
+    # In a real application, you can load questions from a file or database
+    return questions
+
+def display_question(question):
+    print("\n" + question["question"])
+    for option in question["options"]:
+        print(option)
+
+def get_user_answer():
+    answer = input("Your answer (A, B, C, or D): ").strip().upper()
+    while answer not in ["A", "B", "C", "D"]:
+        print("Invalid answer. Please choose A, B, C, or D.")
+        answer = input("Your answer (A, B, C, or D): ").strip().upper()
+    return answer
+
+def run_quiz():
+    score = 0
+    questions = load_questions()
+
+    for question in questions:
+        display_question(question)
+        user_answer = get_user_answer()
+        if user_answer == question["answer"]:
+            print("Correct!")
+            score += 1
+        else:
+            print(f"Wrong. The correct answer is {question['answer']}.")
+
+    print(f"\nYou scored {score} out of {len(questions)}.")
+
+if __name__ == "__main__":
+    run_quiz()
+  
